@@ -50,8 +50,25 @@ export default function Home() {
         skip_empty_lines: true
       });
       setCsvData(records);
+      generateData(records);
     };
     reader.readAsBinaryString(file);
+  };
+
+  const generateData = (props: performanceLog[]) => {
+    let products: any = {};
+    for (let i = 0; i < props.length; i++) {
+      const element = props[i];
+      if (products.hasOwnProperty(element["product"])) {
+        products[element["product"]]["data"].push(element["ask_price_1"]);
+      } else {
+        products[element["product"]] = {
+          label: element["product"],
+          data: [element["ask_price_1"]]
+        };
+      }
+    }
+    console.log(JSON.stringify(products));
   };
 
   return (

@@ -17,11 +17,6 @@ permissions:
   contents: read
   pages: write
   id-token: write
-  
-# Set working directory
-defaults:
-  run:
-    working-directory: ./imc-prosperity
 
 jobs:
   # Build job
